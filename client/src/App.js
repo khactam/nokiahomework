@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-next-table/dist/SmartTable.css';
+import ListData from './components/list';
+
 
 class App extends Component {
-state = {
+  state = {
     data: null
   };
 
@@ -26,10 +29,7 @@ state = {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+        <ListData name='Test' />
         <p className="App-intro">{this.state.data}</p>
       </div>
     );
