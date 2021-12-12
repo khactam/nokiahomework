@@ -29,8 +29,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ListData name='Test' />
-        <p className="App-intro">{this.state.data}</p>
+        <ListData />
+        <span id="conectedExpress" className="App">{this.state.data}</span>
+        <span>Test here</span>
       </div>
     );
   }

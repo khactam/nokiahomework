@@ -33,14 +33,23 @@ class ListData extends Component {
                     minWidth: 150,
                     filter: true,
                     sortable: true
-                  }}>
-                <AgGridColumn field="operation"></AgGridColumn>
+                  }}
+                  suppressRowTransform={true}>
+                <AgGridColumn field="operation"
+                rowSpan={rowSpan}></AgGridColumn>
                 <AgGridColumn field="scope"></AgGridColumn>
                 <AgGridColumn field="timeStamp"></AgGridColumn>
                 <AgGridColumn field="status"></AgGridColumn>
             </AgGridReact>
         </div>
-    }
+    };
 }
-
+function rowSpan (params) {
+    var grandChild = params.data.grandChild;
+    console.log(params.data.operation, grandChild.length)
+    if(grandChild.length > 0) {
+        return grandChild.length + 1;
+    }
+    else return 1;
+}
 export default ListData;
