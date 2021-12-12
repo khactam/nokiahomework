@@ -1,4 +1,6 @@
 # dependencies
 /backend/node_modules
 /client/node_modules
-/client/public
+
+# production
+/backend/build
