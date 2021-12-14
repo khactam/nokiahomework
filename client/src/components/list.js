@@ -10,9 +10,6 @@ class ListData extends Component {
     componentDidMount() {
     this.callBackendAPI()
         .then(res => this.setState({ rowData: res.response }))
-        .then(res => {
-            console.log(this.state.rowData);
-        })
         .catch(err => console.log(err));
     }
         // fetching the GET route from the Express server which matches the GET route from server.js
@@ -25,8 +22,11 @@ class ListData extends Component {
         }
         return body;
     };
+
     render() {
-        return <div className="ag-theme-alpine" style={{ height: '100vh', width: '100vw' }}>
+        return <div className="ag-theme-alpine" style={{ height: '100vh', width: '100vw' }} defaultcoldef={{
+            flex: 1,
+          }}>
             <AgGridReact
                 rowData={this.state.rowData} defaultColDef={{
                     flex: 1,
@@ -35,14 +35,40 @@ class ListData extends Component {
                     sortable: true
                   }}
                   suppressRowTransform={true}>
-                <AgGridColumn field="operation"
-                rowSpan={rowSpan}></AgGridColumn>
+                <AgGridColumn field="operation"></AgGridColumn>
                 <AgGridColumn field="scope"></AgGridColumn>
                 <AgGridColumn field="timeStamp"></AgGridColumn>
-                <AgGridColumn field="status"></AgGridColumn>
+                <AgGridColumn field="status" cellRenderer={statusCellRenderer}></AgGridColumn>
             </AgGridReact>
         </div>
     };
+}
+function statusCellRenderer(params) {
+    let image = '';
+    let textValue = '';
+    switch (params.data.status) {
+        case 1:
+            image = 'finished.svg';
+            textValue = 'Finished';
+            break;
+        case 2:
+            image = 'failed.svg';
+            textValue = 'Failed';
+            break;
+        case 3:
+            image = 'interrupted.svg';
+            textValue = 'Interrupted';
+            break;
+        default:
+            break;
+    }
+    const imageSource = `./assets/${image}`;
+    return (
+        `<span>
+            <img src=${imageSource} style="width:20px"/>
+            ${textValue}
+        </span>`
+    )
 }
 function rowSpan (params) {
     var grandChild = params.data.grandChild;
