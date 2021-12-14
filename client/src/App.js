@@ -13,7 +13,7 @@ class App extends Component {
   componentDidMount() {
     this.callBackendAPI()
       .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
+      .catch(err => console.log(err.message));
   }
     // fetching the GET route from the Express server which matches the GET route from server.js
   callBackendAPI = async () => {
