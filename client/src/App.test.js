@@ -11,16 +11,16 @@ describe('App is rendered without issue', () => {
   });
   it('renders basic element', () => {
     render(<App />);
-    const textConnectedToExpress = screen.getByText('Test here');
+    const textConnectedToExpress = screen.getByText('Nokia homework');
     expect(textConnectedToExpress).toBeInTheDocument();
   });
-  test('component mount correctly and fetch data from express ok', async () => {
-    const wrapper = await mount(<App />);
-    await wrapper.instance().componentDidMount();
-    wrapper.findWhere(
-      n => n.type() === 'span' && n.contains('Test connect with react success')
-    )
-  })
+  // test('component mount correctly and fetch data from express ok', async () => {
+  //   const wrapper = await mount(<App />);
+  //   await wrapper.instance().componentDidMount();
+  //   wrapper.findWhere(
+  //     n => n.type() === 'span' && n.contains('Test connect with react success')
+  //   )
+  // })
 })
 
 

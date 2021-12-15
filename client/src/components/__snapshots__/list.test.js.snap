@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListData should display correctly statusCellRenderer function ok 1`] = `[MockFunction]`;
